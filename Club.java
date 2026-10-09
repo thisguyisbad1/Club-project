@@ -22,6 +22,9 @@ public class Club
     {
         //question 1
         members = new ArrayList<>();
+        join(new Membership("Peter", 6, 2025));
+        join(new Membership("Markiplier", 10, 2025));
+        join(new Membership("Go Diego Go", 3, 2015));
     }
 
     /**
@@ -90,5 +93,23 @@ public class Club
             }
         }
         return purgeList;
+    }
+    
+    public ArrayList<Membership> altPurge (int month, int year){
+        if ((month > 12|| month < 1) || (year < 1950 || year > 2026)){
+            System.out.println("invalid month "+ month);
+            return null;
+        }
+        
+        else {
+            ArrayList<Membership> purgeList = new ArrayList<>();
+            for (Membership m :members){
+                if (m.getMonth() == month && m.getYear() == year){
+                    purgeList.add(m);
+                }
+            }
+            members.removeAll(purgeList);
+            return purgeList;
+        }
     }
 }
